@@ -4,7 +4,7 @@ A browser calculator for counter sales at New A to Z Mobile Center (Nepal). One 
 
 FanumTaxxed is the Fanum-tax name for it: the app that takes its bite of the total *exactly* — and never takes a bite out of what you typed.
 
-Live page: https://urbishcodes.github.io/sales-n-taxes/
+Live page: https://fanumtaxxed.vercel.app/
 
 ---
 
@@ -17,8 +17,8 @@ retro footer, and the dark FANUM-991ES PLUS calculator chassis with its green
 LCD and green / red / amber / teal VAT keys. VT323, Archivo Black, Geist and
 Geist Mono are **self-hosted in `fonts/`** — the app still works fully offline.
 
-This was a re-skin only: `solver.js`, `app.js`, `calc.js` and `items.js` are
-byte-identical to the audited fixed build (121/121 battery checks pass).
+This was a re-skin only: `solver.js`, `app.js` and `calc.js` are byte-identical
+to the audited fixed build (121/121 battery checks pass).
 
 ---
 
@@ -52,9 +52,8 @@ with the rate each count needs, plus the exact counts for the total.
 
 ## 3. Items and the auto-adjust engine
 
-Each item comes from the stock summary with buy cost, max sell rate and unit. Type a name
-(`mobile`, `glass`, `sticker`); every word must appear, spelling slips are tolerated, arrow
-keys + Enter pick, an exact name fills the item on its own.
+Each bill line is a count × rate in PCS, DOZEN or KG, auto-labelled ITEM n (no item-name
+picker). Type the count or the rate; the other box reconciles.
 
 **Auto-adjust (on by default):** one line takes the rest of the total. Which line is
 tickable per line card ("takes the rest"); the master switch is in the Items header.
@@ -65,8 +64,7 @@ tickable per line card ("takes the rest"); the master switch is in the Items hea
 - Steppers: pcs ±1/+10, dozens ±½/+1.
 - Suggestions under each absorber line: counts near the current one with the rate each
   needs (tap to apply), the exact counts for this total, and for kg the nearby weights.
-- Flags per line: LOSS (< 5%), OVER TAX (> 8.5%), above max rate. The status line says
-  **Exact** or **Off by NPR x**, plus a count of flagged lines.
+- The status line says **Exact** or **Off by NPR x**.
 
 ## 4. Side calculator (FNT-991ES PLUS)
 
@@ -79,6 +77,8 @@ tickable per line card ("takes the rest"); the master switch is in the Items hea
   first (see fix #3 above).
 - **Sounds**: distinct tone per operation, ON by default.
 - **Voice**: spoken keys and results, OFF by default, queued so it never slows a keystroke.
+- **Voice input (MIC)**: speak numbers and operators — "three fifty times two fifty" types
+  `350×250` in real time (browser speech recognition; Chrome, Edge and Safari).
 - **History**: per-device (localStorage), per-record delete, tap or ↑/↓ to recall.
 
 ## 5. Files
@@ -89,8 +89,8 @@ tickable per line card ("takes the rest"); the master switch is in the Items hea
 | `style.css` | Styling. Mobile first; Casio-style calculator body. |
 | `app.js` | Bill UI: linked amounts, line cards, anchor editing, suggestions, events. |
 | `calc.js` | Calculator: instant keys, cursor editing, sounds, voice, history, VAT keys. |
-| `solver.js` | Pure rules (absorber engine, band, unit metadata, USE conversion, item search). No DOM. Runs in Node for tests. |
-| `items.js` | Item catalog from the stock summary (92 items after the merge). |
+| `solver.js` | Pure rules (linked amounts, absorber engine, USE conversion, calculator). No DOM. Runs in Node for tests. |
+| `voice.js` | Calculator voice input: speech → word/number parser → keys (the MIC button). |
 
 Tests live outside this repository (Node battery against `solver.js`, 121 checks).
 Deploying: see `DEPLOY.md` (GitHub Pages, Vercel, Cloudflare Workers — no env vars, no
@@ -100,14 +100,10 @@ secrets, no database).
 
 - Not every total can be hit to the paisa when nobody absorbs or the counts are pinned;
   the app shows the variance rather than faking a match.
-- Item list is a snapshot of the stock summary (16-Jul-2026 to 15-Oct-2026).
-- Extra tax above the band is flagged, not calculated (formula still unconfirmed).
-- `Mobile Cover #2750` (kg, rate 2409, buy 2750) is a probable `#` typo in the source data;
-  it still flags LOSS as entered. `P B C Sticket` has no buy cost, so no band check.
 
 ## 7. Run it
 
-No build step and no dependencies. Open `index.html` in any browser, or use the Pages link.
+No build step and no dependencies. Open `index.html` in any browser, or use the live page above.
 
 ---
 

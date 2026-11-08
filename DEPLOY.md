@@ -4,10 +4,12 @@ Autonomous deployment sheet. The app is **pure static files** (HTML + CSS + vani
 **No env vars. No secrets. No database. No build step.** Any agent (or human) can deploy it
 with one of the three options below.
 
+Current live host: **Vercel** — <https://fanumtaxxed.vercel.app> (repo `UrbishCodes/fanumtaxxed-vercel`).
+
 ## Files to deploy
 
 ```
-index.html    style.css    app.js    calc.js    solver.js    items.js    .nojekyll
+index.html    style.css    app.js    calc.js    solver.js    voice.js    .nojekyll
 fonts/        (4 .woff2 files — VT323, Archivo Black, Geist, Geist Mono)
 ```
 
@@ -19,18 +21,19 @@ Optional (only for Vercel CLI): `vercel.json` — not required; Vercel serves th
 
 ---
 
-## Option A — GitHub Pages (current live host)
+## Option A — GitHub Pages
 
-The repo `UrbishCodes/sales-n-taxes` already serves GitHub Pages at
-<https://urbishcodes.github.io/sales-n-taxes/>.
+Point any GitHub Pages repo at the files in this folder, e.g.
+`UrbishCodes/fanumtaxxed-vercel` serving at
+<https://urbishcodes.github.io/fanumtaxxed-vercel/>.
 
 ```bash
-git clone https://github.com/UrbishCodes/sales-n-taxes.git
-cd sales-n-taxes
+git clone https://github.com/UrbishCodes/fanumtaxxed-vercel.git
+cd fanumtaxxed-vercel
 # REPLACE these files with the new build:
-#   index.html  style.css  app.js  solver.js  items.js  README.md  .nojekyll
+#   index.html  style.css  app.js  solver.js  README.md  .nojekyll
 # ADD these new files:
-#   calc.js  DEPLOY.md  wrangler.toml  vercel.json
+#   calc.js  voice.js  DEPLOY.md  wrangler.toml  vercel.json
 git add -A
 git commit -m "FanumTaxxed: restore auto-adjust engine (user edits never reverted), fix VAT-space trap, recalibrate band, merge duplicate item, FNT-991ES PLUS calculator"
 git push origin main
@@ -87,11 +90,12 @@ Dashboard (no CLI):
 1. Header shows **FanumTaxxed**; footer credits Urbish with GitHub + LinkedIn links.
 2. Items card: **Auto-adjust** switch is ON; line card shows the **AMOUNTS — LINKED** section;
    the **SALES CALC — NON-REV · 13%** card sits directly after the Items card.
-3. The user scenario: pick `Mobile Cover #810` (doz, max 867, buy 810), type rate **870**,
-   then type **42473** into GROSS — INCL. VAT. Expect: count **43**, message
+3. The user scenario: add a line, set unit **DOZEN**, type rate **870**, then type **42473**
+   into GROSS — INCL. VAT. Expect: count **43**, message
    "Typed rate NPR 870.00 → 43 doz @ NPR 874.11 (rate absorbs)", status **Exact**, VAT 4,886.27.
 4. Type a different count (say 44) — it must stay exactly what you typed; only the rate moves.
 5. Calculator: type `465893` fast — every digit registers (pointerdown path). SOUND is on,
    VOICE is off by default. `37586.70` → `−VAT` → `Use as bill total` (REV mode) must set
    **37,586.70**, not 33,262.57 (BASE badge shows on the LCD after −VAT).
-6. Item search: typing `screen protrector #25` finds the single merged entry (stock 6,008).
+6. Calculator voice: tap **MIC** (Chrome/Edge/Safari), say "three fifty times two fifty" —
+   the LCD types `350×250` and previews `= 87,500`. Tap MIC again to stop.
