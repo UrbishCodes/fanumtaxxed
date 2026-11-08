@@ -25,17 +25,14 @@ to the audited fixed build (121/121 battery checks pass).
 ## 1. What this build fixes (2026-10-29)
 
 An independent audit of the previous build found the auto-adjust engine had been deleted
-outright, along with six other defects. This build restores and repairs all of it:
+outright, along with three other defects. This build restores and repairs all of it:
 
 | # | Defect in the audited build | Fix here |
 |---|---|---|
 | 1 | **Auto rate/qty adjustment deleted** — "Off by NPR 176.73" and nothing else happened | Engine restored, **ON by default** (audit: every generation of it was mathematically correct — 43 doz @ 874.11 for the reference scenario) |
 | 2 | **The old "fixed box" ping-pong** — typing one box wiped the other, so typed counts/rates reverted | The box you type in is **never overwritten**; a typed count and a typed rate are both remembered. The last-edited one anchors, only the other box reconciles |
 | 3 | **VAT-space trap via the calculator** — 37,586.70 → −VAT → "Use as bill total" divided by 1.13 again → 29,435.90 | The calculator remembers which VAT space the shown number is in (BASE / INCL badge on the LCD). "Use" converts back to the original figure first, so a number is never taxed twice |
-| 4 | **Band contradicted the catalog** — 52 of 93 items flagged OVER TAX at their own max rate | Band recalibrated to **5–8.5%** (the stock summary prices items 6.9–8.3% over buy). Only genuine outliers flag now |
-| 5 | **Mode switch reinterpreted the number** — 42,473 incl-total silently became the excl-base | GROSS and BASE are two **linked boxes**; switching mode relabels the workflow but never reinterprets a typed number |
-| 6 | **Unit switch dropped the item** — max/buy/stock vanished until re-picked | The item link survives every switch; pcs↔doz converts rates by 12; a kg switch blanks them and switching back **restores** them |
-| 7 | **Duplicate catalog entry** — "Screen Protector #25" vs "Screen Protrector #25" shadowed each other | Merged into one entry (stock 6,008) |
+| 4 | **Mode switch reinterpreted the number** — 42,473 incl-total silently became the excl-base | GROSS and BASE are two **linked boxes**; switching mode relabels the workflow but never reinterprets a typed number |
 
 Also in this build: rates go to deeper decimals **only when that is what makes the line
 exact to the paisa** (PRD: "fine decimal precision"), and every line shows count suggestions
