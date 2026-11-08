@@ -4,7 +4,7 @@ Autonomous deployment sheet. The app is **pure static files** (HTML + CSS + vani
 **No env vars. No secrets. No database. No build step.** Any agent (or human) can deploy it
 with one of the three options below.
 
-Current live host: **Vercel** — <https://fanumtaxxed.vercel.app> (repo `UrbishCodes/fanumtaxxed-vercel`).
+Current live host: **Vercel** — <https://fanumtaxxed.vercel.app> (repo `UrbishCodes/fanumtaxxed`).
 
 ## Files to deploy
 
@@ -24,12 +24,12 @@ Optional (only for Vercel CLI): `vercel.json` — not required; Vercel serves th
 ## Option A — GitHub Pages
 
 Point any GitHub Pages repo at the files in this folder, e.g.
-`UrbishCodes/fanumtaxxed-vercel` serving at
-<https://urbishcodes.github.io/fanumtaxxed-vercel/>.
+`UrbishCodes/fanumtaxxed` serving at
+<https://urbishcodes.github.io/fanumtaxxed/>.
 
 ```bash
-git clone https://github.com/UrbishCodes/fanumtaxxed-vercel.git
-cd fanumtaxxed-vercel
+git clone https://github.com/UrbishCodes/fanumtaxxed.git
+cd fanumtaxxed
 # REPLACE these files with the new build:
 #   index.html  style.css  app.js  solver.js  README.md  .nojekyll
 # ADD these new files:

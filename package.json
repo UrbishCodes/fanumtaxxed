@@ -1,22 +1,22 @@
 {
-  "name": "primary",
+  "name": "fanumtaxxed",
   "version": "1.0.0",
-  "description": "A browser calculator for counter sales at New A to Z Mobile Center (Nepal). One customer, one bill, one total, with several items on it. Works offline on a laptop or an iPhone.",
+  "description": "Offline-first counter-sales and VAT web app: linked VAT fields, build a bill from item lines with an auto-adjust engine, and a shop calculator with voice input.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/voice-parser.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UrbishCodes/fanumtaxxed-vercel.git"
+    "url": "git+https://github.com/UrbishCodes/fanumtaxxed.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UrbishCodes/fanumtaxxed-vercel/issues"
+    "url": "https://github.com/UrbishCodes/fanumtaxxed/issues"
   },
-  "homepage": "https://github.com/UrbishCodes/fanumtaxxed-vercel#readme",
+  "homepage": "https://github.com/UrbishCodes/fanumtaxxed#readme",
   "dependencies": {
     "@vercel/analytics": "^2.0.1"
   }
