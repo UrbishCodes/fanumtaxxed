@@ -1318,3 +1318,29 @@ textarea {
   .marquee-track { animation: none; }
   .marquee-track span:last-child { display: none; }
 }
+
+/* ═══════════ voice input (MIC) ═══════════ */
+.mic-status {
+  margin: -6px 2px 10px;
+  min-height: 15px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #7f868f;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mic-status.live { color: #ffd23f; }
+
+#micBtn.lcd-mini.on { animation: micpulse 1.15s ease-in-out infinite; }
+@keyframes micpulse {
+  0%, 100% {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+      0 0 0 2px rgba(74, 160, 96, 0.5), 0 2px 3px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+      0 0 0 5px rgba(74, 160, 96, 0.25), 0 2px 3px rgba(0, 0, 0, 0.4);
+  }
+}

@@ -121,6 +121,7 @@
       <div class="calc-head-btns">
         <button type="button" id="sndBtn" class="lcd-mini on" aria-pressed="true" title="Key sounds (distinct per operation)">SOUND</button>
         <button type="button" id="voiceBtn" class="lcd-mini" aria-pressed="false" title="Spoken keys and results">VOICE</button>
+        <button type="button" id="micBtn" class="lcd-mini" aria-pressed="false" title="Speak numbers and operators — live voice input">MIC</button>
         <button type="button" id="histBtn" class="lcd-mini" title="Calculation history">HIST</button>
         <button type="button" class="link" id="calcClose">Close</button>
       </div>
@@ -134,6 +135,8 @@
       <p class="calc-prev" id="calcPrev"></p>
       <p class="calc-now" id="calcNow">0</p>
     </div>
+
+    <div class="mic-status" id="micStatus" aria-live="polite"></div>
 
     <!-- Replay: four separate, easy-to-hit keys (no circular pad) -->
     <div class="dir-pad" role="group" aria-label="Replay and edit">
@@ -246,5 +249,6 @@
   <script src="solver.js"></script>
   <script src="app.js"></script>
   <script src="calc.js"></script>
+  <script src="voice.js"></script>
 </body>
 </html>

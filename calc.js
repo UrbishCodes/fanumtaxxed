@@ -530,4 +530,11 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+
+  // Voice input hook — lets voice.js feed keys exactly like button presses (additive only).
+  window.FanumCalc = {
+    key: handleKey,
+    open: function () { toggleCalc(true); },
+    isOpen: function () { return panel ? !panel.hidden : false; }
+  };
 })();
